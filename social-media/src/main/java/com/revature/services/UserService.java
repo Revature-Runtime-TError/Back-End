@@ -39,5 +39,10 @@ public class UserService {
 		return userDao.findByFirstNameAndLastName(firstName, lastName);
 	}
     
+	public UserEntity UpdateUser(UserEntity user) {
+		
+		return userDao.save(user);
+		
+	}
    
 }

@@ -14,4 +14,9 @@ public interface UserDao extends JpaRepository<UserEntity, Integer> {
 
 	Optional<UserEntity> findByFirstNameAndLastName(String firstName, String lastName);
 
+	Optional<UserEntity> findByLastName(String authorLastName);
+
+	Optional<UserEntity> findByFirstName(String string);
+
+
 }
