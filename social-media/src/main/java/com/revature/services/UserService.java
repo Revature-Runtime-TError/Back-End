@@ -40,10 +40,7 @@ public class UserService {
 		System.out.println(userDao.findByFirstNameAndLastName(firstName, lastName));
 		return userDao.findByFirstNameAndLastName(firstName, lastName);
 	}
-<<<<<<< Updated upstream
-    
-   
-=======
+
 
 	public UserEntity UpdateUser(UserEntity user) {
 
@@ -61,5 +58,5 @@ public class UserService {
 		return user;
 
 	}
->>>>>>> Stashed changes
+
 }
