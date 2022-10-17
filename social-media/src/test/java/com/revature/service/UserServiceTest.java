@@ -24,7 +24,7 @@ public class UserServiceTest
 	@Mock 
 	UserDao dao;
 	
-	Optional<UserEntity> dummy = Optional.ofNullable(new UserEntity(2,"wpruett@test.com","12345","Wes","Pruett"));
+	Optional<UserEntity> dummy = Optional.ofNullable(new UserEntity(2,"wpruett@test.com","12345","Wes","Pruett", "Hi I am Wes! Thanks for visiting my profile!"));
 	
 	String firstNameTest="Wes";
 	String lastNameTest="Pruett";

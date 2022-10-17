@@ -43,7 +43,7 @@ public class ProfileController {
 		
 	}
 	
-	@PostMapping("/viewaccount")
+	@PostMapping("/viewprofile")
 	public Optional <UserEntity> viewAccount(@RequestBody ViewAccountInput viewAccountInput) {
 	return userService.fetchUser(viewAccountInput.getFirstname(), viewAccountInput.getLastname());
 	
