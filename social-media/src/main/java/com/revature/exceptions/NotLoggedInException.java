@@ -2,6 +2,7 @@ package com.revature.exceptions;
 
 // Exception to be thrown by the AuthAspect
 // Will be handled by a Spring Exception Handler to return a 401
+@SuppressWarnings("serial")
 public class NotLoggedInException extends RuntimeException {
 
     public NotLoggedInException() {

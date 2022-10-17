@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.revature.entity.PostEntity;
-import com.revature.entity.UserEntity;
 
 public interface PostDao extends JpaRepository<PostEntity, Integer>{
 
