@@ -2,7 +2,10 @@ package com.revature.controllers;
 
 import java.util.Optional;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +16,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.revature.dao.UserDao;
+import org.springframework.web.server.ResponseStatusException;
+
+import com.revature.annotations.Authorized;
+import com.revature.dao.UserDao;
+import com.revature.dtos.ViewAccountInput;
+
+import com.revature.entity.PostEntity;
 import com.revature.entity.UserEntity;
+import com.revature.services.PostService;
 import com.revature.services.UserService;
 
 @RestController
@@ -28,6 +40,12 @@ public class ProfileController {
 	@Autowired
 	UserDao userDao;
 	
+
+	@Autowired
+	PostService postService;
+	
+	
+
 	@PutMapping("/edit")
 	public UserEntity updateUser(@RequestBody UserEntity user) {
 		
@@ -45,5 +63,17 @@ public class ProfileController {
     public ResponseEntity<Optional<UserEntity>> findByEmail(@PathVariable("email")String email){
     	return ResponseEntity.ok(this.userService.findByEmail(email));
     }
-    
+
+	
+	@PostMapping("/viewprofile")
+	public Optional <UserEntity> viewAccount(@RequestBody ViewAccountInput viewAccountInput) {
+	return userService.fetchUser(viewAccountInput.getFirstname(), viewAccountInput.getLastname());
+	
+//			
+	}
+	@GetMapping("/viewprofile/{uid}")
+	 public ResponseEntity<PostEntity[]> seeAuthorPost(@PathVariable("uid") int authorId) {
+	    	return ResponseEntity.ok(this.postService.seeAuthorPost( authorId));
+	    }
+
 }
