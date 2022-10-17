@@ -23,7 +23,7 @@ public class UpdateUser {
 	}
 	@Test
 	void testUpdateLast() {
-		UserEntity user =  new UserEntity(100, "a","b","c","d");
+		UserEntity user =  new UserEntity(100, "a","b","c","d", "d");
            
 	    assertThat(user).isNotNull();
 	    
@@ -39,7 +39,7 @@ public class UpdateUser {
 	
 	@Test
 	void testUpdateFirst() {
-		UserEntity user =  new UserEntity(100, "a","b","c","d");
+		UserEntity user =  new UserEntity(100, "a","b","c","d", "d");
            
 	    assertThat(user).isNotNull();
 	    
@@ -55,7 +55,7 @@ public class UpdateUser {
 	
 	@Test
 	void testUpdateEmail() {
-		UserEntity user =  new UserEntity(100, "a","b","c","d");
+		UserEntity user =  new UserEntity(100, "a","b","c","d", "d");
            
 	    assertThat(user).isNotNull();
 	    
