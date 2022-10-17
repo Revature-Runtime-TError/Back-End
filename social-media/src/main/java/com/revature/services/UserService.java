@@ -24,6 +24,11 @@ public class UserService {
     public Optional<UserEntity> findByCredentials(String email, String password) {
         return userDao.findByEmailAndPassword(email, password);
     }
+    
+    public Optional<UserEntity> findByEmail(String email) {
+        return userDao.findByEmail(email);
+    }
+
 
     public Optional<UserEntity> findById(int userId) {
         return userDao.findById(userId);
@@ -40,7 +45,11 @@ public class UserService {
 	}
     
 	public UserEntity UpdateUser(UserEntity user) {
+		return userDao.save(user);
 		
+	}
+	
+	public UserEntity resetPassword(UserEntity user) {
 		return userDao.save(user);
 		
 	}
