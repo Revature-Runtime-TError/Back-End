@@ -28,7 +28,7 @@ public class PostServiceTest
 	PostDao dao;
 	
 	int intTest=2;
-	UserEntity testUser = new UserEntity(2,"wpruett@test.com","12345","Wes","Pruett");
+	UserEntity testUser = new UserEntity(2,"wpruett@test.com","12345","Wes","Pruett", "Hi I am Wes! Thanks for visiting my profile!");
 	List<PostEntity> testComments= new ArrayList<PostEntity>();
 	//testComments.add("blag");
 	PostEntity[] dummy= 
