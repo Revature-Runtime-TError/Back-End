@@ -42,6 +42,7 @@ public class UserService {
 	}
 
 
+
 	public UserEntity UpdateUser(UserEntity user) {
 
 		return userDao.save(user);
@@ -58,5 +59,6 @@ public class UserService {
 		return user;
 
 	}
+
 
 }
