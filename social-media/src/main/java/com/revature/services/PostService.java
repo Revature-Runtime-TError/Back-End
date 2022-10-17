@@ -1,14 +1,12 @@
 package com.revature.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.dao.PostDao;
 import com.revature.entity.PostEntity;
-import com.revature.entity.UserEntity;
 
 @Service
 public class PostService {
@@ -37,8 +35,10 @@ public class PostService {
 		PostEntity[] filteredPosts= this.postDao.seeFirst(authorId);
 		return filteredPosts;
 	}
+
 	public PostEntity[] seeAuthorPost(int input) {
 		PostEntity[] AllAuthorPosts= this.postDao.seeAuthorPost(input);
 		return AllAuthorPosts;
 	}
+
 }

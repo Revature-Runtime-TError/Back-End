@@ -20,12 +20,16 @@ public class UserService {
 	public UserService() {
 	}
 
-	public UserService(UserDao userDao) {
-		this.userDao = userDao;
-	}
-
 	public Optional<UserEntity> findByCredentials(String email, String password) {
 		return userDao.findByEmailAndPassword(email, password);
+	}
+
+	public Optional<UserEntity> findByEmail(String email) {
+		return userDao.findByEmail(email);
+	}
+
+	public UserService(UserDao userDao) {
+		this.userDao = userDao;
 	}
 
 	public Optional<UserEntity> findById(int userId) {
@@ -41,10 +45,12 @@ public class UserService {
 		return userDao.findByFirstNameAndLastName(firstName, lastName);
 	}
 
-
-
 	public UserEntity UpdateUser(UserEntity user) {
+		return userDao.save(user);
 
+	}
+
+	public UserEntity resetPassword(UserEntity user) {
 		return userDao.save(user);
 
 	}
@@ -59,6 +65,5 @@ public class UserService {
 		return user;
 
 	}
-
 
 }
