@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 
 import com.revature.entity.UserEntity;
 
-import java.net.URI;
 import java.util.Optional;
 
 @Service

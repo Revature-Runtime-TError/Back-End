@@ -1,6 +1,5 @@
 package com.revature.controllers;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
@@ -17,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
+import com.revature.dao.UserDao;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.revature.annotations.Authorized;
@@ -51,6 +52,17 @@ public class ProfileController {
 		return userService.UpdateUser(user);
 		
 	}
+	
+	@PutMapping("/reset")
+	public UserEntity resetPassword(@RequestBody UserEntity user) {
+		return userService.resetPassword(user);
+		
+	}
+    
+    @GetMapping("/fetch/{email}")
+    public ResponseEntity<Optional<UserEntity>> findByEmail(@PathVariable("email")String email){
+    	return ResponseEntity.ok(this.userService.findByEmail(email));
+    }
 
 	
 	@PostMapping("/viewprofile")
