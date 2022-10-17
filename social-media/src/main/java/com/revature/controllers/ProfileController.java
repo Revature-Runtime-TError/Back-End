@@ -36,6 +36,10 @@ public class ProfileController {
 	@Autowired
 	UserDao userDao;
 	
+	@Autowired
+	PostService postService;
+	
+	
 	@PutMapping("/edit")
 	public UserEntity updateUser(@RequestBody UserEntity user) {
 		
@@ -49,4 +53,8 @@ public class ProfileController {
 	
 //			
 	}
+	@GetMapping("/viewprofile/{uid}")
+	 public ResponseEntity<PostEntity[]> seeAuthorPost(@PathVariable("uid") int authorId) {
+	    	return ResponseEntity.ok(this.postService.seeAuthorPost( authorId));
+	    }
 }

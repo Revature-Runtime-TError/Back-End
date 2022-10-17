@@ -37,4 +37,8 @@ public class PostService {
 		PostEntity[] filteredPosts= this.postDao.seeFirst(authorId);
 		return filteredPosts;
 	}
+	public PostEntity[] seeAuthorPost(int input) {
+		PostEntity[] AllAuthorPosts= this.postDao.seeAuthorPost(input);
+		return AllAuthorPosts;
+	}
 }
