@@ -26,11 +26,14 @@ public class UserServiceTest {
 	@Mock
 	UserDao dao;
 
-	Optional<UserEntity> dummy = Optional.ofNullable(new UserEntity(2, "wpruett@test.com", "12345", "Wes", "Pruett",
-			"Hi I am Wes! Thanks for visiting my profile!"));
-
-	String firstNameTest = "Wes";
-	String lastNameTest = "Pruett";
+	
+	Optional<UserEntity> dummy = Optional.ofNullable(new UserEntity(2,"wpruett@test.com","12345","Wes","Pruett", "Hi I am Wes! Thanks for visiting my profile!"));
+	UserEntity dummy2 = new UserEntity(2,"wpruett@test.com","12345","Wes","Pruett", "Hi I am Wes! Thanks for visiting my profile!");
+	String firstNameTest="Wes";
+	String lastNameTest="Pruett";
+	String email ="wes.j.pruett@gmail.com";
+	String password="12345";
+	int id=2;
 
 	@Test
 	public void testFindByName() {
@@ -43,6 +46,135 @@ public class UserServiceTest {
 
 		assertEquals(expected, actual);
 	}
+
+	
+	 @Test
+		void testFindId() {
+			when(dao.findById(2)).thenReturn(dummy);
+			
+			Optional<UserEntity> expected = dummy;
+			Optional<UserEntity> actual =null;
+			
+			actual= us.findById(id);
+			
+			assertEquals(expected, actual);
+		}
+	
+	 
+	 @Test
+		void testFindByEmail() {
+			when(dao.findByEmail("wes.j.pruett@gmail.com")).thenReturn(dummy);
+			
+			Optional<UserEntity> expected = dummy;
+			Optional<UserEntity> actual =null;
+			
+			actual= us.findByEmail(email);
+			
+			assertEquals(expected, actual);
+		}
+	 
+	 @Test
+		void testFindByCredentials() {
+			when(dao.findByEmailAndPassword("wes.j.pruett@gmail.com","12345")).thenReturn(dummy);
+			
+			Optional<UserEntity> expected = dummy;
+			Optional<UserEntity> actual =null;
+			
+			actual= us.findByCredentials(email,password);
+			
+			assertEquals(expected, actual);
+		}
+	 
+	   @Test
+	    void testUpdateUser()
+	    {
+		   when(dao.save(dummy2)).thenReturn(dummy2);
+		   
+		   Optional<UserEntity> expected = dummy;
+		   Optional<UserEntity> actual =null;
+			
+		   actual= Optional.ofNullable(us.UpdateUser(dummy2));
+			
+		   assertEquals(expected, actual);
+	    }
+	   
+	   @Test
+	   void testResetPassword()
+	   {
+		   when(dao.save(dummy2)).thenReturn(dummy2);
+		   
+		   Optional<UserEntity> expected = dummy;
+		   Optional<UserEntity> actual =null;
+			
+		   actual= Optional.ofNullable(us.resetPassword(dummy2));
+			
+		   assertEquals(expected, actual);
+	   }
+	   
+
+	   
+	 @Test
+	    void testUpdateLast() {
+
+	        Optional<UserEntity> dummy = Optional.ofNullable(new UserEntity(100, "test@test.com","password","test", "user","test"));
+
+	        
+
+	        String lastNameTest="userss";
+	        dummy.get().setLastName(lastNameTest);
+	        us.save(dummy.get());
+	        when(dao.findByLastName( lastNameTest)).thenReturn(dummy);
+
+	        Optional<UserEntity> expected = dummy;
+	        Optional<UserEntity> actual =null;
+
+
+	        actual= dao.findByLastName("userss");
+
+	        assertEquals(expected, actual);
+	    }
+
+	 
+
+	    @Test
+	    void testUpdateFirst() {
+	    Optional<UserEntity> dummy = Optional.ofNullable(new UserEntity(100, "test@test.com","password","test", "user","test"));
+
+	        String firstNameTest="userss";
+	        dummy.get().setFirstName(firstNameTest);
+	        us.save(dummy.get());
+	        when(dao.findByFirstName( firstNameTest)).thenReturn(dummy);
+	        
+	        Optional<UserEntity> expected = dummy;
+	        Optional<UserEntity> actual =null;
+	       
+	        actual= dao.findByFirstName("userss");
+
+	        assertEquals(expected, actual);       
+	    }
+ 
+
+	    @Test
+	    void testUpdateEmail() {
+
+	    Optional<UserEntity> dummy = Optional.ofNullable(new UserEntity(100, "test@test.com","password","test", "user","test"));
+	        
+	        String emailTest="user@user.com";
+	   
+	        dummy.get().setEmail(emailTest);
+	        us.save(dummy.get());
+	        when(dao.findByEmailAndPassword( emailTest,"password" )).thenReturn(dummy);
+
+	        
+
+	        Optional<UserEntity> expected = dummy;
+	        Optional<UserEntity> actual =null;
+
+	        actual= dao.findByEmailAndPassword(emailTest,"password" );
+
+	        assertEquals(expected, actual);     
+	    }
+    
 
 	@Test
 	public void testFetchUser() {
@@ -73,7 +205,6 @@ public class UserServiceTest {
 		} catch (ResponseStatusException e) {
 			assertEquals(e.getStatus(), HttpStatus.NOT_FOUND);
 		}
-
 	}
 
 }

@@ -6,6 +6,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -41,7 +42,7 @@ public class PostServiceTest {
 	String test1 = "Mister";
 
 	String test2 = "Test";
-
+	List<PostEntity> allcomments= new ArrayList<PostEntity>();
 	@Test
 	public void testSeeFirst() {
 		when(dao.seeFirst(intTest)).thenReturn(dummy);
@@ -83,5 +84,35 @@ public class PostServiceTest {
 		}
 
 	}
+		@Test
+		public void testgetAll() {
+			when(dao.findAll()).thenReturn(allcomments);
+			
+			List<PostEntity> expected = allcomments;
+			List<PostEntity> actual = null;
+			
+			actual= ps.getAll();
+		
+			assertEquals(expected, actual);			
+		}
+		
+		@Test 
+		public void testUpsert() {
+			Optional<PostEntity> temp=Optional.ofNullable(new PostEntity( 100,"Test 1", "Test", testComments,testUser));
+			
+			ps.upsert(temp.get());
+			when(dao.findById(100)).thenReturn(temp);
+			
+			Optional<PostEntity> expected = temp;
+			Optional<PostEntity> actual =null;
+			
+			actual= dao.findById(100);
+			
+			assertEquals(expected, actual);
+			
+		}
+
 
 }
+
+
