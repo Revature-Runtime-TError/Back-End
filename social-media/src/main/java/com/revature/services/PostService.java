@@ -39,6 +39,8 @@ public class PostService {
 	public PostEntity[] seeAuthorPost(int input) {
 		PostEntity[] AllAuthorPosts= this.postDao.seeAuthorPost(input);
 		return AllAuthorPosts;
+		
+		
 	}
 
 }
