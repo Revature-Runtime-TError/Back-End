@@ -9,6 +9,8 @@ import java.util.Optional;
 @Service
 public class AuthService {
 
+	
+	//adding comments for push example
     private final UserService userService;
 
     public AuthService(UserService userService) {
@@ -26,4 +28,8 @@ public class AuthService {
     public UserEntity register(UserEntity user) {
         return userService.save(user);
     }
+    
+    /*public UserEntity register(UserEntity user) {
+        return userService.save(user);
+    }*/
 }
